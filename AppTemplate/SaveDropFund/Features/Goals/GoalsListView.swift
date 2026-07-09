@@ -21,6 +21,7 @@ struct GoalsListView: View {
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \Goal.slotIndex) private var goals: [Goal]
     @State private var viewModel = GoalsViewModel()
+    @State private var showingHallOfFame = false
 
     var body: some View {
         NavigationStack {
@@ -53,8 +54,8 @@ struct GoalsListView: View {
                             }
                         }
 
-                        NavigationLink {
-                            HallOfFameView()
+                        Button {
+                            showingHallOfFame = true
                         } label: {
                             HStack {
                                 Image(systemName: "trophy.fill")
@@ -81,6 +82,12 @@ struct GoalsListView: View {
             .navigationBarHidden(true)
             .sheet(isPresented: $viewModel.showingNewGoal) {
                 GoalFormView(mode: .create)
+            }
+            .sheet(isPresented: $showingHallOfFame) {
+                NavigationStack {
+                    HallOfFameView()
+                }
+                .presentationDragIndicator(.visible)
             }
         }
     }

@@ -111,6 +111,7 @@ struct GoalFormView: View {
             .keyboardDismissToolbar()
             .onAppear(perform: loadExisting)
         }
+        .presentationDragIndicator(.visible)
     }
 
     private var iconGrid: some View {

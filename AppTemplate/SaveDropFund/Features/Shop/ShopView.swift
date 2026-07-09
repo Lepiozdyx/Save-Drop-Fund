@@ -141,6 +141,7 @@ struct ShopView: View {
         }
         .padding(24)
         .presentationDetents([.medium])
+        .presentationDragIndicator(.visible)
     }
 
     private func purchase(_ upgrade: Upgrade) {

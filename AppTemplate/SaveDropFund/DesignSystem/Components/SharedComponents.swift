@@ -92,30 +92,12 @@ struct RiskSelector: View {
     @Binding var selection: RiskLevel
 
     var body: some View {
-        HStack(spacing: 0) {
+        Picker("Risk Level", selection: $selection) {
             ForEach(RiskLevel.allCases) { level in
-                Button {
-                    selection = level
-                } label: {
-                    HStack(spacing: 6) {
-                        Image(systemName: level.icon)
-                            .font(.caption)
-                        Text(level.title)
-                            .font(.subheadline.weight(.semibold))
-                    }
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 10)
-                    .background(selection == level ? Theme.gold : Theme.cream)
-                    .foregroundStyle(selection == level ? .black : Theme.textMuted)
-                }
-                .accessibilityAddTraits(selection == level ? .isSelected : [])
+                Text(level.title).tag(level)
             }
         }
-        .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
-        .overlay(
-            RoundedRectangle(cornerRadius: 14, style: .continuous)
-                .stroke(Color.black.opacity(0.06), lineWidth: 1)
-        )
+        .pickerStyle(SegmentedPickerStyle())
     }
 }
 

@@ -89,6 +89,7 @@ struct ChallengeSheet: View {
         }
         .padding(24)
         .presentationDetents([.medium])
+        .presentationDragIndicator(.visible)
     }
 }
 
@@ -113,5 +114,6 @@ struct ChallengeConfirmSheet: View {
         }
         .padding(24)
         .presentationDetents([.medium])
+        .presentationDragIndicator(.visible)
     }
 }

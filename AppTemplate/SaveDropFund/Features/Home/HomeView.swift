@@ -122,8 +122,11 @@ struct HomeView: View {
                     )
                 }
             }
-            .navigationDestination(isPresented: $showingNotifications) {
-                NotificationsSettingsView()
+            .sheet(isPresented: $showingNotifications) {
+                NavigationStack {
+                    NotificationsSettingsView()
+                }
+                .presentationDragIndicator(.visible)
             }
             .onAppear {
                 if let profile {
@@ -144,12 +147,12 @@ struct HomeView: View {
     private var header: some View {
         HStack {
             VStack(alignment: .leading, spacing: 4) {
-                Text(viewModel.greeting())
-                    .font(.subheadline)
-                    .foregroundStyle(Theme.textMuted)
                 Text("Drop & Fund")
                     .font(Theme.serifTitle(32))
                     .foregroundStyle(Theme.textBrown)
+                Text(viewModel.greeting())
+                    .font(.subheadline)
+                    .foregroundStyle(Theme.textMuted)
             }
             Spacer()
             Button { showingNotifications = true } label: {
