@@ -164,13 +164,14 @@ final class PlinkoScene: SKScene, SKPhysicsContactDelegate {
             slotBackground.fillColor = UIColor.white.withAlphaComponent(0.9)
             slotBackground.strokeColor = .clear
             slotBackground.position = CGPoint(x: x, y: slotY)
-            slotBackground.zPosition = -1
+            slotBackground.zPosition = 20
             addChild(slotBackground)
 
             let label = SKLabelNode(text: slot.icon)
             label.fontSize = 14
             label.verticalAlignmentMode = .center
             label.position = CGPoint(x: x, y: slotY + 2)
+            label.zPosition = 21
             addChild(label)
         }
 
@@ -201,11 +202,15 @@ final class PlinkoScene: SKScene, SKPhysicsContactDelegate {
 
         let radius: CGFloat = 7
         let ball = SKShapeNode(circleOfRadius: radius)
-        ball.fillColor = goldenBalls
-            ? UIColor(red: 0.95, green: 0.75, blue: 0.20, alpha: 1)
-            : .white
-        ball.strokeColor = UIColor(red: 0.82, green: 0.62, blue: 0.10, alpha: 1)
-        ball.lineWidth = 1
+        if goldenBalls {
+            ball.fillColor = UIColor(red: 1.0, green: 0.82, blue: 0.25, alpha: 1)
+            ball.strokeColor = UIColor(red: 1.0, green: 0.92, blue: 0.55, alpha: 1)
+            ball.lineWidth = 1.5
+        } else {
+            ball.fillColor = UIColor(red: 0.95, green: 0.75, blue: 0.20, alpha: 1)
+            ball.strokeColor = .clear
+            ball.lineWidth = 0
+        }
         ball.position = CGPoint(x: startX, y: size.height - 20)
         ball.zPosition = 10
 
